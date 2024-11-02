@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Dépenses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+            color: #120d0d;
+        }
+
+        h1 {
+            text-align: center;
+            color: #120d0d; /* Vert foncé pour le titre */
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        a.button {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 20px;
+            color: #ffffff;
+            background-color: #2e7d32; /* Vert foncé pour le bouton */
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        a.button:hover {
+            background-color: #1b5e20; /* Vert encore plus foncé au survol */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2e7d32; /* Vert foncé pour les en-têtes */
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .actions a {
+            color: #2e7d32; /* Vert foncé pour les liens d'action */
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+
+        .actions a:hover {
+            color: #1b5e20; /* Vert plus foncé au survol */
+        }
+
+        .remaining {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Dépenses du Budget</h1>
+
+    <!-- Affichage du montant restant -->
+    <div class="remaining">
+        Montant restant : <span th:text="${montantRestant} + ' MAD'"></span>
+    </div>
+
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a th:href="@{/depenses/add/{budgetId}(budgetId=${budget.id})}" class="button">Ajouter une Dépense</a>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Description</th>
+            <th>Montant</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="depense : ${depenses}">
+            <td th:text="${depense.description}"></td>
+            <td th:text="${depense.montant} + ' MAD'"></td>
+            <td class="actions">
+                <a th:href="@{/depenses/edit/{id}(id=${depense.id})}">Modifier</a>
+                <a th:href="@{/depenses/delete/{id}(id=${depense.id})}" style="color: #e74c3c;">Supprimer</a>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(depenses)}">
+            <td colspan="3" style="text-align: center; color: #666;">Aucune dépense pour ce budget</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

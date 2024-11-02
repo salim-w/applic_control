@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Budget</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        h1 {
+            text-align: center;
+            color: #120d0d;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #6c757d;
+        }
+        input[type="number"],
+        input[type="date"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        input[type="text"]:focus {
+            border-color: #35490f;
+            background-color: #f1f8e9;
+            outline: none;
+        }
+        .icon {
+            position: relative;
+        }
+        .icon input {
+            padding-left: 30px;
+        }
+        .icon i {
+            position: absolute;
+            top: 35px;
+            left: 10px;
+            color: #6c757d;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #346e16;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #35490f;
+            transform: scale(1.02);
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Ajouter un Budget</h1>
+    <form action="#" th:action="@{/budgets/add}" th:object="${budget}" method="post">
+        <div class="icon">
+            <label>Utilisateur :</label>
+            <input type="text" th:field="*{utilisateur}" placeholder="Nom de l'utilisateur" required/>
+            <i class="fa fa-user"></i>
+        </div>
+        <label>Montant Total :</label>
+        <input type="number" th:field="*{montantTotal}" placeholder="0.00" required/>
+        <label>Date de Début :</label>
+        <input type="date" th:field="*{dateDebut}" required/>
+        <label>Date de Fin :</label>
+        <input type="date" th:field="*{dateFin}" required/>
+        <button type="submit">Enregistrer</button>
+    </form>
+</div>
+</body>
+</html>

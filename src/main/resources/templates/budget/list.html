@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Budgets</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .container:hover {
+            transform: scale(1.01);
+        }
+        h1 {
+            text-align: center;
+            color: #120d0d; /* Vert foncé */
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .add-budget {
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 12px 25px;
+            background-color: #2e7d32; /* Vert foncé */
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .add-budget:hover {
+            background-color: #1b5e20; /* Une teinte plus foncée */
+            transform: translateY(-2px);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #2e7d32; /* Vert foncé */
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #e1f5fe; /* Bleu clair pour le survol */
+        }
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+        .btn {
+            padding: 8px 14px;
+            font-size: 14px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn-view {
+            background-color: #346e16; /* Vert */
+        }
+        .btn-view:hover {
+            background-color: #2e7d32; /* Vert foncé */
+            transform: translateY(-2px);
+        }
+        .btn-edit {
+            background-color: #ffc107; /* Jaune */
+        }
+        .btn-edit:hover {
+            background-color: #e0a800; /* Jaune foncé */
+            transform: translateY(-2px);
+        }
+        .btn-delete {
+            background-color: #dc3545; /* Rouge */
+        }
+        .btn-delete:hover {
+            background-color: #c82333; /* Rouge foncé */
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Liste des Budgets</h1>
+    <a href="/budgets/add" class="add-budget">Ajouter un nouveau Budget</a>
+    <table>
+        <tr>
+            <th>Utilisateur</th>
+            <th>Montant Total</th>
+            <th>Date de Début</th>
+            <th>Date de Fin</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="budget : ${budgets}">
+            <td th:text="${budget.utilisateur}"></td> <!-- Colonne pour l'utilisateur -->
+            <td th:text="${budget.montantTotal}"></td>
+            <td th:text="${budget.dateDebut}"></td>
+            <td th:text="${budget.dateFin}"></td>
+            <td class="actions">
+                <a th:href="@{/depenses/budget/{id}(id=${budget.id})}" class="btn btn-view">Voir Dépenses</a>
+                <a th:href="@{/budgets/edit/{id}(id=${budget.id})}" class="btn btn-edit">Modifier</a>
+                <a th:href="@{/budgets/delete/{id}(id=${budget.id})}" class="btn btn-delete">Supprimer</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

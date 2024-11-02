@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier le Budget</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e9f5e9; /* Vert pâle pour un effet apaisant */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            width: 400px;
+            max-width: 90%;
+            transition: transform 0.3s;
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+        h1 {
+            text-align: center;
+            color: #120d0d; /* Vert foncé */
+            margin-bottom: 20px;
+            font-size: 1.7em;
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #495057;
+            font-size: 1em;
+        }
+        input[type="number"],
+        input[type="date"],
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        input[type="text"]:focus {
+            border-color: #2e7d32; /* Accentuer la couleur au focus */
+            box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #2e7d32; /* Vert principal */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+        button:hover {
+            background-color: #1b5e20; /* Vert plus foncé au survol */
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Modifier le Budget</h1>
+    <form action="#" th:action="@{/budgets/update/{id}(id=${budget.id})}" th:object="${budget}" method="post">
+        <label>Utilisateur :</label>
+        <input type="text" th:field="*{utilisateur}" placeholder="Nom de l'utilisateur" required/>
+
+        <label>Montant Total :</label>
+        <input type="number" th:field="*{montantTotal}" placeholder="Ex. 1000" required/>
+
+        <label>Date de Début :</label>
+        <input type="date" th:field="*{dateDebut}" required/>
+
+        <label>Date de Fin :</label>
+        <input type="date" th:field="*{dateFin}" required/>
+
+        <button type="submit">Enregistrer les modifications</button>
+    </form>
+</div>
+</body>
+</html>

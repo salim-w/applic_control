@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestion des Dépenses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('/budget.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #35490f;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #346e16;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #35490f;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Optimisez Vos Dépenses avec Notre Solution de Suivi Budgétaire</h1>
+    <a href="/budgets">Voir tous les budgets</a>
+</div>
+</body>
+</html>
